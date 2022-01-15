@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -9,6 +10,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   late TabController _tabController;
+  int review = 0;
   List<ListTile> listTile = [
     ListTile(
       title: Text('MLB'),
@@ -73,32 +75,48 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
             const Divider(),
             Column(
               children: List<Widget>.generate(20, (i) {
-                return Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text('KB바둑리그'),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text('만약에 신진서가 인공지능에게 이긴다면?'),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text('담당자'),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text('2시간전'),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text('댓글 13'),
-                      ],
-                    ),
-                    Divider()
-                  ],
+                return Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            'KB바둑리그',
+                            style: TextStyle(color: Colors.deepPurple),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text('만약에 신진서가 인공지능에게 이긴다면?'),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            '담당자',
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text('2시간전'),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text.rich(TextSpan(text: '댓글 ', children: [
+                            TextSpan(
+                              text: '${review}',
+                              style: TextStyle(
+                                color: Colors.red
+                              )
+                            ),
+                          ])),
+                          // Text('댓글 13'),
+                        ],
+                      ),
+                      Divider()
+                    ],
+                  ),
                 );
               }).toList(),
             )
