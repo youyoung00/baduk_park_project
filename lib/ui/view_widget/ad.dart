@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class AD extends StatelessWidget {
   final String adImg;
   const AD({Key? key, required this.adImg}) : super(key: key);
-  // 'https://cdn.pixabay.com/photo/2016/11/20/08/33/camera-1842202__480.jpg'
 
   @override
   Widget build(BuildContext context) {

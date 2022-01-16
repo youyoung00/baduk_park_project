@@ -44,7 +44,7 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
             AD(adImg: topAdModel().adImg),
             const Divider(),
             Column(
-              children: List<Widget>.generate(30, (i) {
+              children: List<Widget>.generate(10, (i) {
                 return Padding(
                   padding: const EdgeInsets.only(left: 8.0),
                   child: Column(
