@@ -1,9 +1,11 @@
 import 'package:baduk_park/ui/view_data/view_model_data/ad_data.dart';
 import 'package:baduk_park/ui/view_data/view_model_data/post_tabbar_data.dart';
+import 'package:baduk_park/ui/view_data/view_model_data/post_view_model_data.dart';
 import 'package:baduk_park/ui/view_data/view_model_data/top_tabbar_data.dart';
 import 'package:baduk_park/ui/view_widget/ad.dart';
 import 'package:baduk_park/ui/view_widget/custom_tabbar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MainView extends StatefulWidget {
   const MainView({Key? key}) : super(key: key);
@@ -17,6 +19,7 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<PostViewModelData>();
     return Scaffold(
       appBar: AppBar(
         title: const Text("BADUKPARK"),
