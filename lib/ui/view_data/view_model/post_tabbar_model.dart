@@ -1,5 +1,5 @@
-class PostTabBarData {
+class PostTabBarModel {
   final List<String> tabTexts;
 
-  PostTabBarData({required this.tabTexts});
+  PostTabBarModel({required this.tabTexts});
 }

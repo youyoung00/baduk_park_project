@@ -1,5 +1,5 @@
-class TopTabBarData {
+class TopTabBarModel {
   final List<String> tabTexts;
 
-  TopTabBarData({required this.tabTexts});
+  TopTabBarModel({required this.tabTexts});
 }

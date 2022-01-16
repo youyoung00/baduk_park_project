@@ -1,5 +1,7 @@
+import 'package:baduk_park/ui/view_data/view_model_data/ad_data.dart';
 import 'package:baduk_park/ui/view_data/view_model_data/post_tabbar_data.dart';
 import 'package:baduk_park/ui/view_data/view_model_data/top_tabbar_data.dart';
+import 'package:baduk_park/ui/view_widget/ad.dart';
 import 'package:baduk_park/ui/view_widget/custom_tabbar.dart';
 import 'package:flutter/material.dart';
 
@@ -39,12 +41,7 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
             CustomTabBar(
                 tabBarLength: topTabBarTexts().tabTexts.length,
                 tabTexts: topTabBarTexts().tabTexts),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 32.0),
-              child: Image.network(
-                  'https://cdn.pixabay.com/photo/2016/11/20/08/33/camera-1842202__480.jpg'),
-            ), // 광고1
+            AD(adImg: topAdModel().adImg),
             const Divider(),
             Column(
               children: List<Widget>.generate(30, (i) {
@@ -97,7 +94,8 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
               next: true,
               tabBarLength: postTabBarTexts().tabTexts.length,
               tabTexts: postTabBarTexts().tabTexts,
-            ), // 게시글 페이지 탭바
+            ),
+            AD(adImg: centerAdModel().adImg)
           ],
         ),
       ),

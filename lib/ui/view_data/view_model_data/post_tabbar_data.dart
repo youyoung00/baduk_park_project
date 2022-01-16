@@ -1,7 +1,7 @@
 import '../view_model/post_tabbar_model.dart';
 
-PostTabBarData postTabBarTexts() {
-  final pageNumbers = PostTabBarData(tabTexts: [
+PostTabBarModel postTabBarTexts() {
+  final pageNumbers = PostTabBarModel(tabTexts: [
     '1',
     '2',
     '3',
