@@ -1,5 +1,6 @@
-import 'package:baduk_park/ui/pages/main_page.dart';
 import 'package:flutter/material.dart';
+
+import 'ui/view_page/main_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: const MainPage(),
+      home: const MainView(),
     );
   }
 }
