@@ -1,4 +1,4 @@
-import 'package:baduk_park/ui/view_data/view_model/ad_model.dart';
+import 'package:baduk_park/ui/view_widget/view_model/ad_model.dart';
 
 AdModel topAdModel() {
   AdModel _adData = AdModel(

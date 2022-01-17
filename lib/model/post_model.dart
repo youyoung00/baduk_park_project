@@ -1,57 +1,47 @@
-class PostPageListModel {
-  final PostPageModel postPageListModel1;
-  final PostPageModel postPageListModel2;
-  final PostPageModel postPageListModel3;
-  final PostPageModel postPageListModel4;
-  final PostPageModel postPageListModel5;
-
-  PostPageListModel({
-    required this.postPageListModel1,
-    required this.postPageListModel2,
-    required this.postPageListModel3,
-    required this.postPageListModel4,
-    required this.postPageListModel5,
-  });
-}
-
-class PostPageModel {
-  final PostModel postModelList1;
-  final PostModel postModelList2;
-  final PostModel postModelList3;
-  final PostModel postModelList4;
-  final PostModel postModelList5;
-  final PostModel postModelList6;
-  final PostModel postModelList7;
-  final PostModel postModelList8;
-  final PostModel postModelList9;
-  final PostModel postModelList10;
-
-  PostPageModel({
-    required this.postModelList1,
-    required this.postModelList2,
-    required this.postModelList3,
-    required this.postModelList4,
-    required this.postModelList5,
-    required this.postModelList6,
-    required this.postModelList7,
-    required this.postModelList8,
-    required this.postModelList9,
-    required this.postModelList10,
-  });
-}
-
 class PostModel {
-  final String keyword;
-  final String title;
-  final String userName;
-  final DateTime inputTime;
-  final int commentCount;
-
   PostModel({
+    required this.id,
+    required this.name,
     required this.keyword,
+    required this.comment,
     required this.title,
-    required this.userName,
     required this.inputTime,
-    required this.commentCount,
+    required this.contents,
   });
+
+  late final String id;
+  late final String name;
+  late final String keyword;
+  late final String comment;
+  late final String title;
+  late final String inputTime;
+  late final String contents;
+
+  factory PostModel.fromJson(Map<String, dynamic> json) {
+    return PostModel(
+      id: json['_id'],
+      name: json['_name'],
+      keyword: json['keyword'],
+      comment: json['COMMENT'],
+      title: json['title'],
+      inputTime: json['inputTime'],
+      contents: json['Contents'],
+    );
+  }
+
+  static List<PostModel> listToMoves(List jsonList) {
+    return jsonList.map((e) => PostModel.fromJson(e)).toList();
+  }
+
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['_id'] = id;
+    _data['_name'] = name;
+    _data['keyword'] = keyword;
+    _data['COMMENT'] = comment;
+    _data['title'] = title;
+    _data['inputTime'] = inputTime;
+    _data['Contents'] = contents;
+    return _data;
+  }
 }

@@ -1,9 +1,10 @@
-import 'package:baduk_park/ui/view_data/view_model_data/ad_data.dart';
-import 'package:baduk_park/ui/view_data/view_model_data/post_tabbar_data.dart';
-import 'package:baduk_park/ui/view_data/view_model_data/post_view_model_data.dart';
-import 'package:baduk_park/ui/view_data/view_model_data/top_tabbar_data.dart';
-import 'package:baduk_park/ui/view_widget/ad.dart';
-import 'package:baduk_park/ui/view_widget/custom_tabbar.dart';
+import 'package:baduk_park/ui/view_model_data/post_view_model_data.dart';
+import 'package:baduk_park/ui/view_widget/widget/ad.dart';
+import 'package:baduk_park/ui/view_widget/widget/custom_tabbar.dart';
+import 'package:baduk_park/ui/view_widget/widget/post.dart';
+import 'package:baduk_park/ui/view_widget/widget_data/ad_data.dart';
+import 'package:baduk_park/ui/view_widget/widget_data/post_tabbar_data.dart';
+import 'package:baduk_park/ui/view_widget/widget_data/top_tabbar_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,11 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> with TickerProviderStateMixin {
-  int reviewCount = 0;
+  @override
+  void initState() {
+    context.read<PostViewModelData>().fetchPost();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,51 +51,21 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
                 tabTexts: topTabBarTexts().tabTexts),
             AD(adImg: topAdModel().adImg),
             const Divider(),
-            Column(
-              children: List<Widget>.generate(10, (i) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            'KB바둑리그',
-                            style: TextStyle(color: Colors.deepPurple),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text('만약에 신진서가 인공지능에게 이긴다면?'),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            '담당자',
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text('2시간전'),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text.rich(TextSpan(text: '댓글 ', children: [
-                            TextSpan(
-                                text: '$reviewCount',
-                                style: const TextStyle(color: Colors.red)),
-                          ])),
-                          // Text('댓글 13'),
-                        ],
-                      ),
-                      const Divider()
-                    ],
-                  ),
-                );
-              }).toList(),
-            ), // 게시글 리스트 30개 : 한페이지
-
+            SizedBox(
+              height: 800,
+              child: ListView(
+                children: viewModel.postList.map<Widget>((e) {
+                  return Post(
+                      keyword: e.keyword,
+                      name: e.name,
+                      title: e.title,
+                      id: e.id,
+                      comment: e.comment,
+                      contents: e.contents,
+                      inputTime: e.inputTime);
+                }).toList(),
+              ),
+            ),
             CustomTabBar(
               indicatorColor: Colors.transparent,
               prev: true,

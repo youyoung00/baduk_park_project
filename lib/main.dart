@@ -1,4 +1,5 @@
-import 'package:baduk_park/ui/view_data/view_model_data/post_view_model_data.dart';
+import 'package:baduk_park/repository/post_api.dart';
+import 'package:baduk_park/ui/view_model_data/post_view_model_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.deepPurple,
         ),
         home: ChangeNotifierProvider<PostViewModelData>(
-          create: (_) => PostViewModelData(),
+          create: (_) => PostViewModelData(PostApi()),
           child: const MainView(),
         ));
   }

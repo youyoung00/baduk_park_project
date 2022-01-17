@@ -1,4 +1,4 @@
-import 'package:baduk_park/ui/view_data/view_model/top_tabbar_model.dart';
+import 'package:baduk_park/ui/view_widget/view_model/top_tabbar_model.dart';
 
 TopTabBarModel topTabBarTexts() {
   final leagueTitles = TopTabBarModel(tabTexts: [
