@@ -1,11 +1,11 @@
-// This is a basic Flutter widget test.
+// This is a basic Flutter widget_body test.
 //
-// To perform an interaction with a widget in your test, use the WidgetTester
+// To perform an interaction with a widget_body in your test, use the WidgetTester
 // utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child view_widget in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// gestures. You can also use WidgetTester to find child widget in the widget_body
+// tree, read text, and verify that the values of widget_body properties are correct.
 
-import 'package:baduk_park/repository/post_api.dart';
+import 'package:baduk_park/data/data_source/remote/post_remote_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Post extends StatefulWidget {
+  // 모델데이터의 리스트로 받기.
   final String id;
   final String name;
   final String keyword;
@@ -57,7 +58,7 @@ class _PostState extends State<Post> {
               ),
               Text.rich(TextSpan(text: '댓글 ', children: [
                 TextSpan(
-                    text: widget.comment,
+                    text: '${widget.comment}',
                     // '$reviewCount',
                     style: const TextStyle(color: Colors.red)),
               ])),

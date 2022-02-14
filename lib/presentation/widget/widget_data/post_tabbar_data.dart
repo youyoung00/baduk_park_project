@@ -1,4 +1,4 @@
-import 'package:baduk_park/ui/view_widget/view_model/post_tabbar_model.dart';
+import 'package:baduk_park/presentation/widget/widget_model/post_tabbar_model.dart';
 
 PostTabBarModel postTabBarTexts() {
   final pageNumbers = PostTabBarModel(tabTexts: [

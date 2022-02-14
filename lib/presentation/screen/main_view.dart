@@ -1,10 +1,11 @@
-import 'package:baduk_park/ui/view_model_data/post_view_model_data.dart';
-import 'package:baduk_park/ui/view_widget/widget/ad.dart';
-import 'package:baduk_park/ui/view_widget/widget/custom_tabbar.dart';
-import 'package:baduk_park/ui/view_widget/widget/post.dart';
-import 'package:baduk_park/ui/view_widget/widget_data/ad_data.dart';
-import 'package:baduk_park/ui/view_widget/widget_data/post_tabbar_data.dart';
-import 'package:baduk_park/ui/view_widget/widget_data/top_tabbar_data.dart';
+import 'package:baduk_park/presentation/view_model/post_view_model_data.dart';
+import 'package:baduk_park/presentation/widget/widget_body/ad.dart';
+import 'package:baduk_park/presentation/widget/widget_body/custom_tabbar.dart';
+import 'package:baduk_park/presentation/widget/widget_body/post.dart';
+import 'package:baduk_park/presentation/widget/widget_data/ad_data.dart';
+import 'package:baduk_park/presentation/widget/widget_data/post_tabbar_data.dart';
+import 'package:baduk_park/presentation/widget/widget_data/top_tabbar_data.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -40,6 +41,14 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
               Icons.search_outlined,
             ),
             onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(
+              Icons.logout,
+            ),
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+            },
           )
         ],
       ),
