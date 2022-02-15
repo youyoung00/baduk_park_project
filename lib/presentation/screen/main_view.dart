@@ -9,6 +9,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../widget/widget_body/manu_button.dart';
+
 class MainView extends StatefulWidget {
   const MainView({Key? key}) : super(key: key);
 
@@ -17,6 +19,59 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> with TickerProviderStateMixin {
+  // late BannerAd staticAd;
+  // bool staticAdLoaded = false;
+  // late BannerAd inlineAd;
+  // bool inlineAdLoaded = false;
+  //
+  // static const AdRequest request = AdRequest(
+  //     // keywords: ['',''],
+  //     // contentUrl: '',
+  //     // nonPersonalizedAds: false
+  //     );
+  //
+  // void loadStaticBannerAd() {
+  //   staticAd = BannerAd(
+  //     adUnitId: BannerAd.testAdUnitId,
+  //     size: AdSize.banner,
+  //     request: request,
+  //     listener: BannerAdListener(
+  //       onAdLoaded: (ad) {
+  //         setState(() {
+  //           staticAdLoaded = true;
+  //         });
+  //       },
+  //       onAdFailedToLoad: (ad, error) {
+  //         ad.dispose();
+  //         print('ad failed to load ${error.message}');
+  //       },
+  //     ),
+  //   );
+  //
+  //   staticAd.load();
+  // }
+  //
+  // void loadInlineBannerAd() {
+  //   inlineAd = BannerAd(
+  //     adUnitId: BannerAd.testAdUnitId,
+  //     size: AdSize.banner,
+  //     request: request,
+  //     listener: BannerAdListener(
+  //       onAdLoaded: (ad) {
+  //         setState(() {
+  //           inlineAdLoaded = true;
+  //         });
+  //       },
+  //       onAdFailedToLoad: (ad, error) {
+  //         ad.dispose();
+  //         print('ad failed to load ${error.message}');
+  //       },
+  //     ),
+  //   );
+  //
+  //   staticAd.load();
+  // }
+
   @override
   void initState() {
     context.read<PostViewModelData>().fetchPost();
@@ -58,6 +113,11 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
             CustomTabBar(
                 tabBarLength: topTabBarTexts().tabTexts.length,
                 tabTexts: topTabBarTexts().tabTexts),
+            // Container(
+            //   child: AdWidget(ad: staticAd),
+            //   width: staticAd.size.width.toDouble(),
+            //   height: staticAd.size.height.toDouble(),
+            // ),
             AD(adImg: topAdModel().adImg),
             const Divider(),
             SizedBox(
@@ -86,6 +146,7 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
           ],
         ),
       ),
+      floatingActionButton: const MenuButton(),
     );
   }
 }

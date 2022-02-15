@@ -9,11 +9,14 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // MobileAds.instance.initialize();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
 }
+
+// const int maxAttempts = 3;
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

@@ -7,13 +7,15 @@ import 'package:http/http.dart' as http;
 class PostApi extends ContentsApi {
   @override
   Future<List<PostModel>> fetchPosts() async {
-    var url = 'http://192.168.0.80:3000/badukpark';
-    // var url = 'http://192.168.219.105:3000';
+    String homeIp = '192.168.219.165';
+    String schoolIp = '192.168.0.80';
+    String mainIp = '10.0.2.2';
+
+    var url = 'http://$mainIp:3000/badukpark';
     var response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
       List jsonList = jsonDecode(response.body);
-      // print(jsonList);
 
       jsonList.map((e) => PostModel.fromJson(e)).toList;
 

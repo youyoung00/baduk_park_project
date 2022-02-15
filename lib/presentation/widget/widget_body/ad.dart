@@ -12,6 +12,7 @@ class AD extends StatelessWidget {
         alignment: Alignment.topRight,
         children: [
           Image.network(adImg),
+          // AdWidget(ad: staticAd),
           Padding(
             padding: const EdgeInsets.all(2.0),
             child: Container(
