@@ -1,5 +1,5 @@
-import 'package:baduk_park/auth_gate/auth_gate.dart';
-import 'package:baduk_park/presentation/view_model/post_view_model_data.dart';
+import 'package:baduk_park/presentation/screen/main_view.dart';
+import 'package:baduk_park/presentation/view_model/main_view_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,8 +16,6 @@ void main() async {
   runApp(const MyApp());
 }
 
-// const int maxAttempts = 3;
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -28,9 +26,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.deepPurple,
         ),
-        home: ChangeNotifierProvider<PostViewModelData>(
-          create: (_) => PostViewModelData(PostApi()),
-          child: const AuthGate(),
+        home: ChangeNotifierProvider<MainViewModel>(
+          create: (_) => MainViewModel(PostApi()),
+          child: const MainView(),
         ));
   }
 }

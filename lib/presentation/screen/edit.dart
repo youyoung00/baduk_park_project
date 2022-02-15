@@ -9,7 +9,6 @@ class Edit extends StatefulWidget {
 
 class _EditState extends State<Edit> {
   bool isCheckBox = false;
-
   bool isCheckboxListTile = false;
 
   @override
