@@ -1,11 +1,11 @@
-class PostModel {
-  PostModel({
+class Post {
+  Post({
     required this.id,
     required this.name,
     required this.keyword,
     required this.comment,
     required this.title,
-    required this.inputTime,
+    required this.timestamp,
     required this.contents,
   });
 
@@ -14,23 +14,23 @@ class PostModel {
   late final String keyword;
   late final String comment;
   late final String title;
-  late final String inputTime;
+  late final String timestamp;
   late final String contents;
 
-  factory PostModel.fromJson(Map<String, dynamic> json) {
-    return PostModel(
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(
       id: json['_id'],
       name: json['_name'],
       keyword: json['keyword'],
       comment: json['COMMENT'],
       title: json['title'],
-      inputTime: json['inputTime'],
+      timestamp: json['inputTime'],
       contents: json['Contents'],
     );
   }
 
-  static List<PostModel> listToMoves(List jsonList) {
-    return jsonList.map((e) => PostModel.fromJson(e)).toList();
+  static List<Post> listToMoves(List jsonList) {
+    return jsonList.map((e) => Post.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
@@ -40,8 +40,13 @@ class PostModel {
     _data['keyword'] = keyword;
     _data['COMMENT'] = comment;
     _data['title'] = title;
-    _data['inputTime'] = inputTime;
+    _data['inputTime'] = timestamp;
     _data['Contents'] = contents;
     return _data;
+  }
+
+  @override
+  String toString() {
+    return 'Post{id: $id, name: $name, keyword: $keyword, comment: $comment, title: $title, timestamp: $timestamp, contents: $contents}';
   }
 }

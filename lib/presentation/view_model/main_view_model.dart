@@ -1,17 +1,21 @@
-import 'package:baduk_park/domain/domain_model/post_model.dart';
-import 'package:baduk_park/domain/domain_repository/contents_api.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../domain/model/post.dart';
+import '../../domain/repository/contents_api_repository.dart';
+
 class MainViewModel with ChangeNotifier {
   bool isLogin = false;
 
-  List<PostModel> postList = [];
+  List<Post> postList = [];
 
-  final ContentsApi _api;
+  // final GetPostsUseCase repository;
+  final ContentsApiRepository _api;
 
-  MainViewModel(this._api) {
+  MainViewModel(
+    this._api,
+  ) {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
         isLogin = false;
@@ -23,7 +27,7 @@ class MainViewModel with ChangeNotifier {
   }
 
   Future<void> fetchPost() async {
-    postList = await _api.fetchPosts();
+    postList = await _api.fetch();
     notifyListeners();
   }
 }

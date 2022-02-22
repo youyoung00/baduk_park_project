@@ -1,6 +1,7 @@
 import 'package:baduk_park/presentation/view_model/main_view_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterfire_ui/auth.dart';
 import 'package:provider/provider.dart';
 
 import '../../auth_gate/auth_gate.dart';
@@ -19,6 +20,12 @@ class _MenuWindowState extends State<MenuWindow> {
     '바둑이야기',
     '바둑뉴스',
     '기력향상',
+  ];
+
+  List<String> borderBtmButtons = [
+    '글쓰기',
+    '내 정보',
+    '로그인',
   ];
 
   @override
@@ -72,7 +79,27 @@ class _MenuWindowState extends State<MenuWindow> {
                               icon: const Icon(
                                 Icons.person,
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                if (viewModel.isLogin) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) {
+                                      return const ProfileScreen(
+                                        providerConfigs: [
+                                          EmailProviderConfiguration(),
+                                        ],
+                                        avatarSize: 24,
+                                      );
+                                    }),
+                                  );
+                                } else {
+                                  const snackBar = SnackBar(
+                                    content: Text('로그아웃 상태입니다.'),
+                                  );
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
+                                }
+                              },
                             ),
                           ),
                           const Text(
@@ -91,7 +118,7 @@ class _MenuWindowState extends State<MenuWindow> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => AuthGate(),
+                                      builder: (context) => const AuthGate(),
                                     ),
                                   );
                                 } else {
@@ -111,9 +138,9 @@ class _MenuWindowState extends State<MenuWindow> {
                                 color: Colors.deepPurple, fontSize: 10),
                           )
                         ],
-                      )
+                      ),
                     ],
-                  )
+                  ),
                 ],
               ),
             );
@@ -126,3 +153,73 @@ class _MenuWindowState extends State<MenuWindow> {
     );
   }
 }
+
+// Column(
+// children: [
+// CircleAvatar(
+// child: IconButton(
+// icon: const Icon(Icons.edit),
+// onPressed: () {
+// Navigator.push(
+// context,
+// MaterialPageRoute(
+// builder: (context) => const Edit(),
+// ),
+// );
+// },
+// ),
+// ),
+// const Text(
+// '글쓰기',
+// style: TextStyle(
+// color: Colors.deepPurple, fontSize: 10),
+// ),
+// ],
+// ),
+// Column(
+// children: [
+// CircleAvatar(
+// child: IconButton(
+// icon: const Icon(
+// Icons.person,
+// ),
+// onPressed: () {},
+// ),
+// ),
+// const Text(
+// '내 정보',
+// style: TextStyle(
+// color: Colors.deepPurple, fontSize: 10),
+// )
+// ],
+// ),
+// Column(
+// children: [
+// CircleAvatar(
+// child: IconButton(
+// onPressed: () {
+// if (!viewModel.isLogin) {
+// Navigator.push(
+// context,
+// MaterialPageRoute(
+// builder: (context) => AuthGate(),
+// ),
+// );
+// } else {
+// FirebaseAuth.instance.signOut();
+// Navigator.of(context, rootNavigator: true)
+//     .pop();
+// }
+// },
+// icon: Icon(
+// viewModel.isLogin ? Icons.logout : Icons.login,
+// ),
+// ),
+// ),
+// Text(
+// viewModel.isLogin ? '로그아웃' : '로그인',
+// style: const TextStyle(
+// color: Colors.deepPurple, fontSize: 10),
+// )
+// ],
+// ),

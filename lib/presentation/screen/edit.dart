@@ -8,17 +8,16 @@ class Edit extends StatefulWidget {
 }
 
 class _EditState extends State<Edit> {
-  bool isCheckBox = false;
-  bool isCheckboxListTile = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("글쓰기"),
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: const Text("글쓰기"),
       ),
-      body: Container(
-        width: MediaQuery.of(context).size.width,
+      body: SizedBox(
+        width: double.infinity,
         child: Column(
           children: [
             Padding(
@@ -29,56 +28,10 @@ class _EditState extends State<Edit> {
                       flex: 1,
                       child: OutlinedButton(
                         onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                content: Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text('바둑이야기'),
-                                        Checkbox(
-                                          value: isCheckBox,
-                                          onChanged: (bool? value) {
-                                            setState(() {
-                                              isCheckBox = value!;
-                                            });
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text('바둑뉴스'),
-                                        Checkbox(
-                                          value: isCheckBox,
-                                          onChanged: (bool? value) {
-                                            setState(() {
-                                              isCheckBox = value!;
-                                            });
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text('실력향상'),
-                                        Checkbox(
-                                          value: isCheckBox,
-                                          onChanged: (bool? value) {
-                                            setState(() {
-                                              isCheckBox = value!;
-                                            });
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
+                          const snackBar = SnackBar(
+                            content: Text('서비스 준비 중입니다.'),
                           );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         },
                         style: ButtonStyle(
                           shape: MaterialStateProperty.all(
@@ -94,56 +47,10 @@ class _EditState extends State<Edit> {
                     flex: 1,
                     child: OutlinedButton(
                       onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              content: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text('이세돌'),
-                                      Checkbox(
-                                        value: isCheckBox,
-                                        onChanged: (bool? value) {
-                                          setState(() {
-                                            isCheckBox = value!;
-                                          });
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text('대회'),
-                                      Checkbox(
-                                        value: isCheckBox,
-                                        onChanged: (bool? value) {
-                                          setState(() {
-                                            isCheckBox = value!;
-                                          });
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text('알파고'),
-                                      Checkbox(
-                                        value: isCheckBox,
-                                        onChanged: (bool? value) {
-                                          setState(() {
-                                            isCheckBox = value!;
-                                          });
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
+                        const snackBar = SnackBar(
+                          content: Text('서비스 준비 중입니다.'),
                         );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       },
                       style: ButtonStyle(
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(
@@ -188,7 +95,9 @@ class _EditState extends State<Edit> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       textStyle: const TextStyle(fontSize: 20)),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: const Text('취소'),
                 ),
               ],

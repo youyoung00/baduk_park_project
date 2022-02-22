@@ -1,11 +1,11 @@
 import '../widget_model/top_tabbar_model.dart';
 
 TopTabBarModel topTabBarTexts() {
-  final leagueTitles = TopTabBarModel(tabTexts: [
-    '바둑리그1',
-    '바둑리그2',
-    '바둑리그3',
+  final borderTitles = TopTabBarModel(tabTexts: [
+    '바둑이야기',
+    '바둑뉴스',
+    '기력향상',
   ]);
 
-  return leagueTitles;
+  return borderTitles;
 }

@@ -1,10 +1,9 @@
 import 'package:baduk_park/presentation/screen/main_view.dart';
-import 'package:baduk_park/presentation/view_model/main_view_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'data/data_source/remote/post_remote_data_source.dart';
+import 'di/provider_setup.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -13,7 +12,13 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+
+  runApp(
+    MultiProvider(
+      providers: globalProviders,
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -22,13 +27,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.deepPurple,
-        ),
-        home: ChangeNotifierProvider<MainViewModel>(
-          create: (_) => MainViewModel(PostApi()),
-          child: const MainView(),
-        ));
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+      ),
+      home: const MainView(),
+    );
   }
 }

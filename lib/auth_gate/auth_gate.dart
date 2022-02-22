@@ -1,11 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
-import 'package:provider/provider.dart';
 
-import '../data/data_source/remote/post_remote_data_source.dart';
 import '../presentation/screen/main_view.dart';
-import '../presentation/view_model/main_view_model.dart';
 
 class AuthGate extends StatelessWidget {
   const AuthGate({Key? key}) : super(key: key);
@@ -43,16 +40,14 @@ class AuthGate extends StatelessWidget {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            ChangeNotifierProvider<MainViewModel>(
-                          create: (_) => MainViewModel(PostApi()),
-                          child: const MainView(),
-                        ),
+                        builder: (context) {
+                          return const MainView();
+                        },
                       ),
                     );
                   },
                   child: const Text('시작!'),
-                ),
+                )
               ],
             ),
           ),

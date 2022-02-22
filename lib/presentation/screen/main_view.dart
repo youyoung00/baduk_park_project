@@ -43,14 +43,6 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
             ),
             onPressed: () {},
           ),
-          // IconButton(
-          //   icon: const Icon(
-          //     Icons.logout,
-          //   ),
-          //   onPressed: () async {
-          //     await FirebaseAuth.instance.signOut();
-          //   },
-          // )
         ],
       ),
       body: SingleChildScrollView(
@@ -72,7 +64,7 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
                       id: e.id,
                       comment: e.comment,
                       contents: e.contents,
-                      inputTime: e.inputTime);
+                      inputTime: e.timestamp);
                 }).toList(),
               ),
             ),
