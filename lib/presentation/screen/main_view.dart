@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../components/widget_body/ad.dart';
 import '../components/widget_body/custom_tabbar.dart';
-import '../components/widget_body/post.dart';
+import '../components/widget_body/post_widget.dart';
 import '../components/widget_data/ad_data.dart';
 import '../components/widget_data/post_tabbar_data.dart';
 import '../components/widget_data/top_tabbar_data.dart';
@@ -20,7 +20,7 @@ class MainView extends StatefulWidget {
 class _MainViewState extends State<MainView> with TickerProviderStateMixin {
   @override
   void initState() {
-    context.read<MainViewModel>().fetchPost();
+    Future.microtask(() => context.read<MainViewModel>().fetchPost());
     super.initState();
   }
 
@@ -51,22 +51,22 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
             CustomTabBar(
                 tabBarLength: topTabBarTexts().tabTexts.length,
                 tabTexts: topTabBarTexts().tabTexts),
-            AD(adImg: topAdModel().adImg),
+            AD(
+              adImg: topAdModel().adImg,
+            ),
             const Divider(),
-            SizedBox(
-              height: 800,
-              child: ListView(
-                children: viewModel.postList.map<Widget>((e) {
-                  return Post(
-                      keyword: e.keyword,
-                      name: e.name,
-                      title: e.title,
-                      id: e.id,
-                      comment: e.comment,
-                      contents: e.contents,
-                      inputTime: e.timestamp);
-                }).toList(),
-              ),
+            ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: viewModel.state.posts.length,
+              itemBuilder: (context, index) {
+                print('view Data 확인: ${viewModel.state.posts[index]}');
+                return ListTile(
+                  title: PostWidget(
+                    post: viewModel.state.posts[index],
+                  ),
+                );
+              },
             ),
             CustomTabBar(
               indicatorColor: Colors.transparent,

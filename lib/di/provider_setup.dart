@@ -39,6 +39,6 @@ List<SingleChildWidget> dependentModels = [
 // View 가 사용. 2, 3에 등록한 클래스를 사용할 수 있음.
 List<SingleChildWidget> viewModels = [
   ChangeNotifierProvider<MainViewModel>(
-    create: (context) => MainViewModel(context.read<ContentsApiRepository>()),
+    create: (context) => MainViewModel(context.read<GetPostsUseCase>()),
   ),
 ];

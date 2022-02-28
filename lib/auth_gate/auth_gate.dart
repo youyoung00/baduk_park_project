@@ -37,6 +37,7 @@ class AuthGate extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
+                    // FirebaseAuth.instance.currentUser.
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(

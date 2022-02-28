@@ -1,5 +1,6 @@
-import 'package:baduk_park/domain/model/post.dart';
+import '../../data/data_source/remote/result.dart';
+import '../model/post.dart';
 
 abstract class ContentsApiRepository {
-  Future<List<Post>> fetch();
+  Future<Result<List<Post>>> fetch();
 }

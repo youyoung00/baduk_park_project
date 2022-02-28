@@ -1,18 +1,22 @@
 import 'package:baduk_park/domain/repository/contents_api_repository.dart';
 
-import 'data/post_data.dart';
+import '../../data/data_source/remote/result.dart';
+import '../model/post.dart';
 
 class GetPostsUseCase {
   final ContentsApiRepository repository;
 
   GetPostsUseCase(this.repository);
 
-  Future<List<PostData>> call() async {
+  Future<Result<List<Post>>> call() async {
     final result = await repository.fetch();
-    final postDataList = result.map((e) => PostData.fromJson(e)).toList();
 
-    postDataList.sort((a, b) => b.timestamp.compareTo(a.timestamp));
-
-    return postDataList;
+    return result.when(success: (posts) {
+      print('유즈케이스 확인 : $posts');
+      return Result.success(posts);
+      // return Result.success(posts.sort((a, b) => b.compareTo(a.createTime)));
+    }, error: (message) {
+      return Result.error(message);
+    });
   }
 }

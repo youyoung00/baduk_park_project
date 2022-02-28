@@ -1,7 +1,8 @@
-import 'package:baduk_park/domain/model/post.dart';
 import 'package:baduk_park/domain/repository/contents_api_repository.dart';
 
+import '../../domain/model/post.dart';
 import '../data_source/remote/post_remote_data_source.dart';
+import '../data_source/remote/result.dart';
 
 class PostRemoteRepositoryImpl implements ContentsApiRepository {
   PostApi api;
@@ -9,12 +10,18 @@ class PostRemoteRepositoryImpl implements ContentsApiRepository {
   PostRemoteRepositoryImpl(this.api);
 
   @override
-  Future<List<Post>> fetch() async {
-    final result = await api.fetch();
-    // if (result.isNotEmpty) {
-    return result.map((e) => Post.fromJson(e)).toList();
-    // } else {
-    //   throw throw Exception('Failed to load');
-    // }
+  Future<Result<List<Post>>> fetch() async {
+    final Result<Iterable> result = await api.fetch();
+    print('Impl3 $result');
+
+    return result.when(
+      success: (iterable) {
+        print(iterable.map((e) => Post.fromJson(e)).toList());
+        return Result.success(iterable.map((e) => Post.fromJson(e)).toList());
+      },
+      error: (message) {
+        return Result.error(message);
+      },
+    );
   }
 }
