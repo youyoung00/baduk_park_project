@@ -12,11 +12,9 @@ class PostRemoteRepositoryImpl implements ContentsApiRepository {
   @override
   Future<Result<List<Post>>> fetch() async {
     final Result<Iterable> result = await api.fetch();
-    print('Impl3 $result');
 
     return result.when(
       success: (iterable) {
-        print(iterable.map((e) => Post.fromJson(e)).toList());
         return Result.success(iterable.map((e) => Post.fromJson(e)).toList());
       },
       error: (message) {

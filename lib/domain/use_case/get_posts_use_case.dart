@@ -12,9 +12,7 @@ class GetPostsUseCase {
     final result = await repository.fetch();
 
     return result.when(success: (posts) {
-      print('유즈케이스 확인 : $posts');
       return Result.success(posts);
-      // return Result.success(posts.sort((a, b) => b.compareTo(a.createTime)));
     }, error: (message) {
       return Result.error(message);
     });
