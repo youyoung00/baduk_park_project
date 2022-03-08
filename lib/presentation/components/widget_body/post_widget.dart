@@ -31,7 +31,7 @@ class _PostWidgetState extends State<PostWidget> {
                     color: Colors.indigoAccent,
                     fontSize: 13,
                   ),
-                  text: ' [${widget.post.id}]',
+                  text: ' [${widget.post.commentCount}]',
                 ),
               ],
             ),

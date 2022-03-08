@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:provider/provider.dart';
 
-import '../../auth_gate/auth_gate.dart';
 import '../components/widget_body/border_button.dart';
-import 'edit.dart';
+import 'auth_gate_screen.dart';
+import 'edit_screen.dart';
 
 class MenuWindow extends StatefulWidget {
   const MenuWindow({Key? key}) : super(key: key);
@@ -59,7 +59,7 @@ class _MenuWindowState extends State<MenuWindow> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const Edit(),
+                                    builder: (context) => const EditScreen(),
                                   ),
                                 );
                               },
@@ -118,7 +118,8 @@ class _MenuWindowState extends State<MenuWindow> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => const AuthGate(),
+                                      builder: (context) =>
+                                          const AuthGateScreen(),
                                     ),
                                   );
                                 } else {

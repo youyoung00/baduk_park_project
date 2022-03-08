@@ -30,6 +30,7 @@ class _$PostTearOff {
       @JsonKey(name: 'view_count') required int viewCount,
       @JsonKey(name: 'member_id') required int memberId,
       @JsonKey(name: 'created_at') required DateTime createdAt,
+      @JsonKey(name: 'comment_count') required int commentCount,
       @JsonKey(name: 'email_name') required String emailName}) {
     return _Post(
       id: id,
@@ -39,6 +40,7 @@ class _$PostTearOff {
       viewCount: viewCount,
       memberId: memberId,
       createdAt: createdAt,
+      commentCount: commentCount,
       emailName: emailName,
     );
   }
@@ -67,6 +69,8 @@ mixin _$Post {
   int get memberId => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'comment_count')
+  int get commentCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'email_name')
   String get emailName => throw _privateConstructorUsedError;
 
@@ -87,6 +91,7 @@ abstract class $PostCopyWith<$Res> {
       @JsonKey(name: 'view_count') int viewCount,
       @JsonKey(name: 'member_id') int memberId,
       @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'comment_count') int commentCount,
       @JsonKey(name: 'email_name') String emailName});
 }
 
@@ -107,6 +112,7 @@ class _$PostCopyWithImpl<$Res> implements $PostCopyWith<$Res> {
     Object? viewCount = freezed,
     Object? memberId = freezed,
     Object? createdAt = freezed,
+    Object? commentCount = freezed,
     Object? emailName = freezed,
   }) {
     return _then(_value.copyWith(
@@ -138,6 +144,10 @@ class _$PostCopyWithImpl<$Res> implements $PostCopyWith<$Res> {
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      commentCount: commentCount == freezed
+          ? _value.commentCount
+          : commentCount // ignore: cast_nullable_to_non_nullable
+              as int,
       emailName: emailName == freezed
           ? _value.emailName
           : emailName // ignore: cast_nullable_to_non_nullable
@@ -159,6 +169,7 @@ abstract class _$PostCopyWith<$Res> implements $PostCopyWith<$Res> {
       @JsonKey(name: 'view_count') int viewCount,
       @JsonKey(name: 'member_id') int memberId,
       @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'comment_count') int commentCount,
       @JsonKey(name: 'email_name') String emailName});
 }
 
@@ -180,6 +191,7 @@ class __$PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res>
     Object? viewCount = freezed,
     Object? memberId = freezed,
     Object? createdAt = freezed,
+    Object? commentCount = freezed,
     Object? emailName = freezed,
   }) {
     return _then(_Post(
@@ -211,6 +223,10 @@ class __$PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      commentCount: commentCount == freezed
+          ? _value.commentCount
+          : commentCount // ignore: cast_nullable_to_non_nullable
+              as int,
       emailName: emailName == freezed
           ? _value.emailName
           : emailName // ignore: cast_nullable_to_non_nullable
@@ -230,6 +246,7 @@ class _$_Post implements _Post {
       @JsonKey(name: 'view_count') required this.viewCount,
       @JsonKey(name: 'member_id') required this.memberId,
       @JsonKey(name: 'created_at') required this.createdAt,
+      @JsonKey(name: 'comment_count') required this.commentCount,
       @JsonKey(name: 'email_name') required this.emailName});
 
   factory _$_Post.fromJson(Map<String, dynamic> json) => _$$_PostFromJson(json);
@@ -256,12 +273,15 @@ class _$_Post implements _Post {
   @JsonKey(name: 'created_at')
   final DateTime createdAt;
   @override
+  @JsonKey(name: 'comment_count')
+  final int commentCount;
+  @override
   @JsonKey(name: 'email_name')
   final String emailName;
 
   @override
   String toString() {
-    return 'Post(id: $id, title: $title, content: $content, boardName: $boardName, viewCount: $viewCount, memberId: $memberId, createdAt: $createdAt, emailName: $emailName)';
+    return 'Post(id: $id, title: $title, content: $content, boardName: $boardName, viewCount: $viewCount, memberId: $memberId, createdAt: $createdAt, commentCount: $commentCount, emailName: $emailName)';
   }
 
   @override
@@ -276,6 +296,8 @@ class _$_Post implements _Post {
             const DeepCollectionEquality().equals(other.viewCount, viewCount) &&
             const DeepCollectionEquality().equals(other.memberId, memberId) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
+            const DeepCollectionEquality()
+                .equals(other.commentCount, commentCount) &&
             const DeepCollectionEquality().equals(other.emailName, emailName));
   }
 
@@ -289,6 +311,7 @@ class _$_Post implements _Post {
       const DeepCollectionEquality().hash(viewCount),
       const DeepCollectionEquality().hash(memberId),
       const DeepCollectionEquality().hash(createdAt),
+      const DeepCollectionEquality().hash(commentCount),
       const DeepCollectionEquality().hash(emailName));
 
   @JsonKey(ignore: true)
@@ -311,6 +334,7 @@ abstract class _Post implements Post {
       @JsonKey(name: 'view_count') required int viewCount,
       @JsonKey(name: 'member_id') required int memberId,
       @JsonKey(name: 'created_at') required DateTime createdAt,
+      @JsonKey(name: 'comment_count') required int commentCount,
       @JsonKey(name: 'email_name') required String emailName}) = _$_Post;
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$_Post.fromJson;
@@ -336,6 +360,9 @@ abstract class _Post implements Post {
   @override
   @JsonKey(name: 'created_at')
   DateTime get createdAt;
+  @override
+  @JsonKey(name: 'comment_count')
+  int get commentCount;
   @override
   @JsonKey(name: 'email_name')
   String get emailName;

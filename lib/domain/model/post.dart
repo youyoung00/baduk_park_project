@@ -14,6 +14,7 @@ class Post with _$Post {
     @JsonKey(name: 'view_count') required int viewCount,
     @JsonKey(name: 'member_id') required int memberId,
     @JsonKey(name: 'created_at') required DateTime createdAt,
+    @JsonKey(name: 'comment_count') required int commentCount,
     @JsonKey(name: 'email_name') required String emailName,
   }) = _Post;
 

@@ -1,11 +1,12 @@
+import 'package:baduk_park/core/security%20area/keys/api_key.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
 
-import '../presentation/screen/main_view.dart';
+import 'main_screen.dart';
 
-class AuthGate extends StatelessWidget {
-  const AuthGate({Key? key}) : super(key: key);
+class AuthGateScreen extends StatelessWidget {
+  const AuthGateScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +17,7 @@ class AuthGate extends StatelessWidget {
         if (!snapshot.hasData) {
           return const SignInScreen(providerConfigs: [
             EmailProviderConfiguration(),
-            GoogleProviderConfiguration(
-                clientId:
-                    '228672836597-nknhc54e74puf7kov0c32ppprpbq7drc.apps.googleusercontent.com'),
+            GoogleProviderConfiguration(clientId: Keys.googleLoginKey),
           ]);
         }
 
@@ -41,7 +40,7 @@ class AuthGate extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return const MainView();
+                          return const MainScreen();
                         },
                       ),
                     );

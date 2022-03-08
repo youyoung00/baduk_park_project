@@ -3,20 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/security area/keys/api_key.dart';
 import '../components/widget_body/custom_tabbar.dart';
 import '../components/widget_body/post_widget.dart';
 import '../components/widget_data/post_tabbar_data.dart';
 import '../components/widget_data/top_tabbar_data.dart';
 import 'manu_window.dart';
 
-class MainView extends StatefulWidget {
-  const MainView({Key? key}) : super(key: key);
+class MainScreen extends StatefulWidget {
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
-  State<MainView> createState() => _MainViewState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _MainViewState extends State<MainView> with TickerProviderStateMixin {
+class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   late BannerAd staticAd;
   bool staticAdLoaded = false;
 
@@ -28,7 +29,7 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
   void loadStaticBannerAd() {
     staticAd = BannerAd(
       // adUnitId: 'ca-app-pub-3940256099942544~3347511713',
-      adUnitId: 'ca-app-pub-7404825862596697/1309200322',
+      adUnitId: Keys.adKey,
       size: AdSize.banner,
       request: request,
       listener: BannerAdListener(
@@ -49,7 +50,7 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
 
   void loadInlineBannerAd() {
     inlineAd = BannerAd(
-      adUnitId: 'ca-app-pub-7404825862596697/1309200322',
+      adUnitId: Keys.adKey,
       size: AdSize.banner,
       request: request,
       listener: BannerAdListener(

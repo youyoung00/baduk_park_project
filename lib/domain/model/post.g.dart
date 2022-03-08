@@ -14,6 +14,7 @@ _$_Post _$$_PostFromJson(Map<String, dynamic> json) => _$_Post(
       viewCount: json['view_count'] as int,
       memberId: json['member_id'] as int,
       createdAt: DateTime.parse(json['created_at'] as String),
+      commentCount: json['comment_count'] as int,
       emailName: json['email_name'] as String,
     );
 
@@ -25,5 +26,6 @@ Map<String, dynamic> _$$_PostToJson(_$_Post instance) => <String, dynamic>{
       'view_count': instance.viewCount,
       'member_id': instance.memberId,
       'created_at': instance.createdAt.toIso8601String(),
+      'comment_count': instance.commentCount,
       'email_name': instance.emailName,
     };
