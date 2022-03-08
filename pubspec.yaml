@@ -27,7 +27,6 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  json_serializable: ^6.1.4
   freezed_annotation: ^1.1.0
   json_annotation: ^4.4.0
   http: ^0.13.4
@@ -42,9 +41,10 @@ dependencies:
   firebase_core: ^1.12.0
   flutterfire_ui: ^0.3.4
   google_mobile_ads: ^1.1.0
-  awesome_card: ^1.1.7
+  infinite_scroll_pagination: ^3.1.0
 
 dev_dependencies:
+  json_serializable: ^6.1.4
   freezed: ^1.1.1
   build_runner: ^2.1.7
   flutter_test:

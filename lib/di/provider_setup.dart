@@ -1,8 +1,8 @@
-import 'package:baduk_park/data/data_source/remote/post_remote_data_source.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
+import '../data/data_source/api/post_api_data_source.dart';
 import '../data/repository/post_remote_repository_impl.dart';
 import '../domain/repository/contents_api_repository.dart';
 import '../domain/use_case/get_posts_use_case.dart';
@@ -28,7 +28,7 @@ List<SingleChildWidget> dependentModels = [
     update: (context, client, _) => PostApi(client),
   ),
   ProxyProvider<PostApi, ContentsApiRepository>(
-    update: (context, api, _) => PostRemoteRepositoryImpl(api),
+    update: (context, postApi, _) => BoardApiRepositoryImpl(postApi),
   ),
   ProxyProvider<ContentsApiRepository, GetPostsUseCase>(
     update: (context, repository, _) => GetPostsUseCase(repository),

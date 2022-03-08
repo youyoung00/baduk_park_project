@@ -1,21 +1,20 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'post.freezed.dart';
 part 'post.g.dart';
 
 @freezed
 class Post with _$Post {
-  const factory Post({
-    @JsonKey(name: '_id') required String id,
-    required String title,
-    required String name,
-    @JsonKey(name: 'member_id') required String memberId,
-    @JsonKey(name: 'view_count') required String viewCount,
-    required String content,
-    @JsonKey(name: 'create_time') required String createTime,
-    @JsonKey(name: 'comment_count') required String commentCount,
-    @JsonKey(name: 'board_num') required String boardNum,
-    @JsonKey(name: 'status') required String postStatus,
+  factory Post({
+    @JsonKey(name: '_id') required int id,
+    @JsonKey(name: 'title') required String title,
+    @JsonKey(name: 'content') required String content,
+    @JsonKey(name: 'board_name') required String boardName,
+    @JsonKey(name: 'view_count') required int viewCount,
+    @JsonKey(name: 'member_id') required int memberId,
+    @JsonKey(name: 'created_at') required DateTime createdAt,
+    @JsonKey(name: 'email_name') required String emailName,
   }) = _Post;
 
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);

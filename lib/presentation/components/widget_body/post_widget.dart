@@ -1,19 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../domain/model/post.dart';
 
 class PostWidget extends StatefulWidget {
   final Post post;
-
-  // 모델데이터의 리스트로 받기.
-  // final String id;
-  // final String name;
-  // final String keyword;
-  // final String comment;
-  // final String title;
-  // final String inputTime;
-  // final String contents;
 
   const PostWidget({Key? key, required this.post}) : super(key: key);
 
@@ -24,37 +14,45 @@ class PostWidget extends StatefulWidget {
 class _PostWidgetState extends State<PostWidget> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 8.0),
-      child: ListTile(
-        title: Text.rich(
-          TextSpan(
-            text: widget.post.title,
-            children: [
-              TextSpan(
-                text: ' [${widget.post.commentCount}]',
-              ),
-            ],
+    return Column(
+      children: [
+        ListTile(
+          contentPadding: const EdgeInsets.symmetric(
+            vertical: 0.0,
+            horizontal: 0.0,
+          ),
+          title: Text.rich(
+            TextSpan(
+              style: const TextStyle(fontSize: 16),
+              text: widget.post.title,
+              children: [
+                TextSpan(
+                  style: const TextStyle(
+                    color: Colors.indigoAccent,
+                    fontSize: 13,
+                  ),
+                  text: ' [${widget.post.id}]',
+                ),
+              ],
+            ),
+          ),
+          subtitle: Text.rich(
+            TextSpan(
+              style: const TextStyle(fontSize: 13),
+              text: widget.post.emailName,
+              children: [
+                TextSpan(
+                  text: ' 조회 ${widget.post.viewCount}',
+                ),
+              ],
+            ),
+          ),
+          trailing: Text(
+            widget.post.createdAt.toString(),
           ),
         ),
-        subtitle: Text.rich(
-          TextSpan(
-            text: widget.post.name,
-            children: [
-              TextSpan(
-                text: ' 조회수 ${widget.post.viewCount}',
-              ),
-            ],
-          ),
-        ),
-        // Row(
-        //   children: [
-        //     Text('${widget.post.name} '),
-        //     Text('조회수 ${widget.post.viewCount}'),
-        //   ],
-        // ),
-        trailing: Text(widget.post.createTime.toString()),
-      ),
+        const Divider()
+      ],
     );
   }
 }

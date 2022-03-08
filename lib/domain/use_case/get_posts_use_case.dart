@@ -1,6 +1,6 @@
 import 'package:baduk_park/domain/repository/contents_api_repository.dart';
 
-import '../../data/data_source/remote/result.dart';
+import '../../data/data_source/api/result.dart';
 import '../model/post.dart';
 
 class GetPostsUseCase {

@@ -23,27 +23,23 @@ class _$PostTearOff {
   const _$PostTearOff();
 
   _Post call(
-      {@JsonKey(name: '_id') required String id,
-      required String title,
-      required String name,
-      @JsonKey(name: 'member_id') required String memberId,
-      @JsonKey(name: 'view_count') required String viewCount,
-      required String content,
-      @JsonKey(name: 'create_time') required String createTime,
-      @JsonKey(name: 'comment_count') required String commentCount,
-      @JsonKey(name: 'board_num') required String boardNum,
-      @JsonKey(name: 'status') required String postStatus}) {
+      {@JsonKey(name: '_id') required int id,
+      @JsonKey(name: 'title') required String title,
+      @JsonKey(name: 'content') required String content,
+      @JsonKey(name: 'board_name') required String boardName,
+      @JsonKey(name: 'view_count') required int viewCount,
+      @JsonKey(name: 'member_id') required int memberId,
+      @JsonKey(name: 'created_at') required DateTime createdAt,
+      @JsonKey(name: 'email_name') required String emailName}) {
     return _Post(
       id: id,
       title: title,
-      name: name,
-      memberId: memberId,
-      viewCount: viewCount,
       content: content,
-      createTime: createTime,
-      commentCount: commentCount,
-      boardNum: boardNum,
-      postStatus: postStatus,
+      boardName: boardName,
+      viewCount: viewCount,
+      memberId: memberId,
+      createdAt: createdAt,
+      emailName: emailName,
     );
   }
 
@@ -58,22 +54,21 @@ const $Post = _$PostTearOff();
 /// @nodoc
 mixin _$Post {
   @JsonKey(name: '_id')
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'member_id')
-  String get memberId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'view_count')
-  String get viewCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'content')
   String get content => throw _privateConstructorUsedError;
-  @JsonKey(name: 'create_time')
-  String get createTime => throw _privateConstructorUsedError;
-  @JsonKey(name: 'comment_count')
-  String get commentCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'board_num')
-  String get boardNum => throw _privateConstructorUsedError;
-  @JsonKey(name: 'status')
-  String get postStatus => throw _privateConstructorUsedError;
+  @JsonKey(name: 'board_name')
+  String get boardName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'view_count')
+  int get viewCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'member_id')
+  int get memberId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'email_name')
+  String get emailName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -85,16 +80,14 @@ abstract class $PostCopyWith<$Res> {
   factory $PostCopyWith(Post value, $Res Function(Post) then) =
       _$PostCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: '_id') String id,
-      String title,
-      String name,
-      @JsonKey(name: 'member_id') String memberId,
-      @JsonKey(name: 'view_count') String viewCount,
-      String content,
-      @JsonKey(name: 'create_time') String createTime,
-      @JsonKey(name: 'comment_count') String commentCount,
-      @JsonKey(name: 'board_num') String boardNum,
-      @JsonKey(name: 'status') String postStatus});
+      {@JsonKey(name: '_id') int id,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'content') String content,
+      @JsonKey(name: 'board_name') String boardName,
+      @JsonKey(name: 'view_count') int viewCount,
+      @JsonKey(name: 'member_id') int memberId,
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'email_name') String emailName});
 }
 
 /// @nodoc
@@ -109,55 +102,45 @@ class _$PostCopyWithImpl<$Res> implements $PostCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? title = freezed,
-    Object? name = freezed,
-    Object? memberId = freezed,
-    Object? viewCount = freezed,
     Object? content = freezed,
-    Object? createTime = freezed,
-    Object? commentCount = freezed,
-    Object? boardNum = freezed,
-    Object? postStatus = freezed,
+    Object? boardName = freezed,
+    Object? viewCount = freezed,
+    Object? memberId = freezed,
+    Object? createdAt = freezed,
+    Object? emailName = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      memberId: memberId == freezed
-          ? _value.memberId
-          : memberId // ignore: cast_nullable_to_non_nullable
-              as String,
-      viewCount: viewCount == freezed
-          ? _value.viewCount
-          : viewCount // ignore: cast_nullable_to_non_nullable
               as String,
       content: content == freezed
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
-      createTime: createTime == freezed
-          ? _value.createTime
-          : createTime // ignore: cast_nullable_to_non_nullable
+      boardName: boardName == freezed
+          ? _value.boardName
+          : boardName // ignore: cast_nullable_to_non_nullable
               as String,
-      commentCount: commentCount == freezed
-          ? _value.commentCount
-          : commentCount // ignore: cast_nullable_to_non_nullable
-              as String,
-      boardNum: boardNum == freezed
-          ? _value.boardNum
-          : boardNum // ignore: cast_nullable_to_non_nullable
-              as String,
-      postStatus: postStatus == freezed
-          ? _value.postStatus
-          : postStatus // ignore: cast_nullable_to_non_nullable
+      viewCount: viewCount == freezed
+          ? _value.viewCount
+          : viewCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      memberId: memberId == freezed
+          ? _value.memberId
+          : memberId // ignore: cast_nullable_to_non_nullable
+              as int,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      emailName: emailName == freezed
+          ? _value.emailName
+          : emailName // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -169,16 +152,14 @@ abstract class _$PostCopyWith<$Res> implements $PostCopyWith<$Res> {
       __$PostCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: '_id') String id,
-      String title,
-      String name,
-      @JsonKey(name: 'member_id') String memberId,
-      @JsonKey(name: 'view_count') String viewCount,
-      String content,
-      @JsonKey(name: 'create_time') String createTime,
-      @JsonKey(name: 'comment_count') String commentCount,
-      @JsonKey(name: 'board_num') String boardNum,
-      @JsonKey(name: 'status') String postStatus});
+      {@JsonKey(name: '_id') int id,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'content') String content,
+      @JsonKey(name: 'board_name') String boardName,
+      @JsonKey(name: 'view_count') int viewCount,
+      @JsonKey(name: 'member_id') int memberId,
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'email_name') String emailName});
 }
 
 /// @nodoc
@@ -194,55 +175,45 @@ class __$PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? title = freezed,
-    Object? name = freezed,
-    Object? memberId = freezed,
-    Object? viewCount = freezed,
     Object? content = freezed,
-    Object? createTime = freezed,
-    Object? commentCount = freezed,
-    Object? boardNum = freezed,
-    Object? postStatus = freezed,
+    Object? boardName = freezed,
+    Object? viewCount = freezed,
+    Object? memberId = freezed,
+    Object? createdAt = freezed,
+    Object? emailName = freezed,
   }) {
     return _then(_Post(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      memberId: memberId == freezed
-          ? _value.memberId
-          : memberId // ignore: cast_nullable_to_non_nullable
-              as String,
-      viewCount: viewCount == freezed
-          ? _value.viewCount
-          : viewCount // ignore: cast_nullable_to_non_nullable
               as String,
       content: content == freezed
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
-      createTime: createTime == freezed
-          ? _value.createTime
-          : createTime // ignore: cast_nullable_to_non_nullable
+      boardName: boardName == freezed
+          ? _value.boardName
+          : boardName // ignore: cast_nullable_to_non_nullable
               as String,
-      commentCount: commentCount == freezed
-          ? _value.commentCount
-          : commentCount // ignore: cast_nullable_to_non_nullable
-              as String,
-      boardNum: boardNum == freezed
-          ? _value.boardNum
-          : boardNum // ignore: cast_nullable_to_non_nullable
-              as String,
-      postStatus: postStatus == freezed
-          ? _value.postStatus
-          : postStatus // ignore: cast_nullable_to_non_nullable
+      viewCount: viewCount == freezed
+          ? _value.viewCount
+          : viewCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      memberId: memberId == freezed
+          ? _value.memberId
+          : memberId // ignore: cast_nullable_to_non_nullable
+              as int,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      emailName: emailName == freezed
+          ? _value.emailName
+          : emailName // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -251,51 +222,46 @@ class __$PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Post implements _Post {
-  const _$_Post(
+  _$_Post(
       {@JsonKey(name: '_id') required this.id,
-      required this.title,
-      required this.name,
-      @JsonKey(name: 'member_id') required this.memberId,
+      @JsonKey(name: 'title') required this.title,
+      @JsonKey(name: 'content') required this.content,
+      @JsonKey(name: 'board_name') required this.boardName,
       @JsonKey(name: 'view_count') required this.viewCount,
-      required this.content,
-      @JsonKey(name: 'create_time') required this.createTime,
-      @JsonKey(name: 'comment_count') required this.commentCount,
-      @JsonKey(name: 'board_num') required this.boardNum,
-      @JsonKey(name: 'status') required this.postStatus});
+      @JsonKey(name: 'member_id') required this.memberId,
+      @JsonKey(name: 'created_at') required this.createdAt,
+      @JsonKey(name: 'email_name') required this.emailName});
 
   factory _$_Post.fromJson(Map<String, dynamic> json) => _$$_PostFromJson(json);
 
   @override
   @JsonKey(name: '_id')
-  final String id;
+  final int id;
   @override
+  @JsonKey(name: 'title')
   final String title;
   @override
-  final String name;
-  @override
-  @JsonKey(name: 'member_id')
-  final String memberId;
-  @override
-  @JsonKey(name: 'view_count')
-  final String viewCount;
-  @override
+  @JsonKey(name: 'content')
   final String content;
   @override
-  @JsonKey(name: 'create_time')
-  final String createTime;
+  @JsonKey(name: 'board_name')
+  final String boardName;
   @override
-  @JsonKey(name: 'comment_count')
-  final String commentCount;
+  @JsonKey(name: 'view_count')
+  final int viewCount;
   @override
-  @JsonKey(name: 'board_num')
-  final String boardNum;
+  @JsonKey(name: 'member_id')
+  final int memberId;
   @override
-  @JsonKey(name: 'status')
-  final String postStatus;
+  @JsonKey(name: 'created_at')
+  final DateTime createdAt;
+  @override
+  @JsonKey(name: 'email_name')
+  final String emailName;
 
   @override
   String toString() {
-    return 'Post(id: $id, title: $title, name: $name, memberId: $memberId, viewCount: $viewCount, content: $content, createTime: $createTime, commentCount: $commentCount, boardNum: $boardNum, postStatus: $postStatus)';
+    return 'Post(id: $id, title: $title, content: $content, boardName: $boardName, viewCount: $viewCount, memberId: $memberId, createdAt: $createdAt, emailName: $emailName)';
   }
 
   @override
@@ -305,17 +271,12 @@ class _$_Post implements _Post {
             other is _Post &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.memberId, memberId) &&
-            const DeepCollectionEquality().equals(other.viewCount, viewCount) &&
             const DeepCollectionEquality().equals(other.content, content) &&
-            const DeepCollectionEquality()
-                .equals(other.createTime, createTime) &&
-            const DeepCollectionEquality()
-                .equals(other.commentCount, commentCount) &&
-            const DeepCollectionEquality().equals(other.boardNum, boardNum) &&
-            const DeepCollectionEquality()
-                .equals(other.postStatus, postStatus));
+            const DeepCollectionEquality().equals(other.boardName, boardName) &&
+            const DeepCollectionEquality().equals(other.viewCount, viewCount) &&
+            const DeepCollectionEquality().equals(other.memberId, memberId) &&
+            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
+            const DeepCollectionEquality().equals(other.emailName, emailName));
   }
 
   @override
@@ -323,14 +284,12 @@ class _$_Post implements _Post {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(memberId),
-      const DeepCollectionEquality().hash(viewCount),
       const DeepCollectionEquality().hash(content),
-      const DeepCollectionEquality().hash(createTime),
-      const DeepCollectionEquality().hash(commentCount),
-      const DeepCollectionEquality().hash(boardNum),
-      const DeepCollectionEquality().hash(postStatus));
+      const DeepCollectionEquality().hash(boardName),
+      const DeepCollectionEquality().hash(viewCount),
+      const DeepCollectionEquality().hash(memberId),
+      const DeepCollectionEquality().hash(createdAt),
+      const DeepCollectionEquality().hash(emailName));
 
   @JsonKey(ignore: true)
   @override
@@ -344,47 +303,42 @@ class _$_Post implements _Post {
 }
 
 abstract class _Post implements Post {
-  const factory _Post(
-      {@JsonKey(name: '_id') required String id,
-      required String title,
-      required String name,
-      @JsonKey(name: 'member_id') required String memberId,
-      @JsonKey(name: 'view_count') required String viewCount,
-      required String content,
-      @JsonKey(name: 'create_time') required String createTime,
-      @JsonKey(name: 'comment_count') required String commentCount,
-      @JsonKey(name: 'board_num') required String boardNum,
-      @JsonKey(name: 'status') required String postStatus}) = _$_Post;
+  factory _Post(
+      {@JsonKey(name: '_id') required int id,
+      @JsonKey(name: 'title') required String title,
+      @JsonKey(name: 'content') required String content,
+      @JsonKey(name: 'board_name') required String boardName,
+      @JsonKey(name: 'view_count') required int viewCount,
+      @JsonKey(name: 'member_id') required int memberId,
+      @JsonKey(name: 'created_at') required DateTime createdAt,
+      @JsonKey(name: 'email_name') required String emailName}) = _$_Post;
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$_Post.fromJson;
 
   @override
   @JsonKey(name: '_id')
-  String get id;
+  int get id;
   @override
+  @JsonKey(name: 'title')
   String get title;
   @override
-  String get name;
-  @override
-  @JsonKey(name: 'member_id')
-  String get memberId;
-  @override
-  @JsonKey(name: 'view_count')
-  String get viewCount;
-  @override
+  @JsonKey(name: 'content')
   String get content;
   @override
-  @JsonKey(name: 'create_time')
-  String get createTime;
+  @JsonKey(name: 'board_name')
+  String get boardName;
   @override
-  @JsonKey(name: 'comment_count')
-  String get commentCount;
+  @JsonKey(name: 'view_count')
+  int get viewCount;
   @override
-  @JsonKey(name: 'board_num')
-  String get boardNum;
+  @JsonKey(name: 'member_id')
+  int get memberId;
   @override
-  @JsonKey(name: 'status')
-  String get postStatus;
+  @JsonKey(name: 'created_at')
+  DateTime get createdAt;
+  @override
+  @JsonKey(name: 'email_name')
+  String get emailName;
   @override
   @JsonKey(ignore: true)
   _$PostCopyWith<_Post> get copyWith => throw _privateConstructorUsedError;

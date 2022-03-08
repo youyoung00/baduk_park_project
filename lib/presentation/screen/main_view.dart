@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
-import '../components/widget_body/ad.dart';
 import '../components/widget_body/custom_tabbar.dart';
 import '../components/widget_body/post_widget.dart';
-import '../components/widget_data/ad_data.dart';
 import '../components/widget_data/post_tabbar_data.dart';
 import '../components/widget_data/top_tabbar_data.dart';
 import 'manu_window.dart';
@@ -30,7 +28,7 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
   void loadStaticBannerAd() {
     staticAd = BannerAd(
       // adUnitId: 'ca-app-pub-3940256099942544~3347511713',
-      adUnitId: BannerAd.testAdUnitId,
+      adUnitId: 'ca-app-pub-7404825862596697/1309200322',
       size: AdSize.banner,
       request: request,
       listener: BannerAdListener(
@@ -51,7 +49,7 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
 
   void loadInlineBannerAd() {
     inlineAd = BannerAd(
-      adUnitId: BannerAd.testAdUnitId,
+      adUnitId: 'ca-app-pub-7404825862596697/1309200322',
       size: AdSize.banner,
       request: request,
       listener: BannerAdListener(
@@ -81,6 +79,7 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<MainViewModel>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("BADUKPARK"),
@@ -89,7 +88,11 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
             icon: const Icon(
               Icons.edit_outlined,
             ),
-            onPressed: () {},
+            onPressed: () {
+              for (int i = 0; i < viewModel.state.posts.length; i++) {
+                print(viewModel.state.posts[i].createdAt);
+              }
+            },
           ),
           IconButton(
             icon: const Icon(
@@ -113,12 +116,6 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
                 height: staticAd.size.height.toDouble(),
                 alignment: Alignment.bottomCenter,
               ),
-            // const SizedBox(
-            //   height: 30,
-            // ),
-            // AD(
-            //   adImg: topAdModel().adImg,
-            // ),
             const Divider(),
             ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
@@ -133,6 +130,7 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
                         width: inlineAd.size.width.toDouble(),
                         height: inlineAd.size.height.toDouble(),
                       ),
+                      const Divider(),
                       ListTile(
                         title: PostWidget(
                           post: viewModel.state.posts[index],
@@ -156,7 +154,6 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
               tabBarLength: postTabBarTexts().tabTexts.length,
               tabTexts: postTabBarTexts().tabTexts,
             ),
-            AD(adImg: centerAdModel().adImg)
           ],
         ),
       ),
