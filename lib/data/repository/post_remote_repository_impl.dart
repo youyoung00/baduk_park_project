@@ -7,8 +7,6 @@ import '../data_source/api/result.dart';
 class BoardApiRepositoryImpl implements ContentsApiRepository {
   PostApi postApi;
 
-  // AdApi adApi;
-
   BoardApiRepositoryImpl(
     this.postApi,
   );
@@ -17,32 +15,15 @@ class BoardApiRepositoryImpl implements ContentsApiRepository {
   Future<Result<List<Post>>> fetch() async {
     final Result<Iterable> result = await postApi.fetch();
 
-    final List<Post> postList = [];
-
     return result.when(
       success: (iterable) {
-        return Result.success(iterable.map((e) => Post.fromJson(e)).toList());
+        return Result.success(
+          iterable.map((e) => Post.fromJson(e)).toList(),
+        );
       },
       error: (message) {
         return Result.error(message);
       },
     );
   }
-
-  // @override
-  // Future<BannerAd> loadStaticBannerAd() async {
-  //   staticAd = BannerAd(
-  //     adUnitId: BannerAd.testAdUnitId,
-  //     size: AdSize.banner,
-  //     request: request,
-  //     listener: BannerAdListener(
-  //       onAdLoaded: (ad) {},
-  //       onAdFailedToLoad: (ad, error) {
-  //         ad.dispose();
-  //         print('ad failed to load ${error.message}');
-  //       },
-  //     ),
-  //   );
-  //   return staticAd;
-  // }
 }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/security area/keys/api_key.dart';
 import '../components/widget_body/custom_tabbar.dart';
 import '../components/widget_body/post_widget.dart';
 import '../components/widget_data/post_tabbar_data.dart';
@@ -18,69 +17,51 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
-  late BannerAd staticAd;
-  bool staticAdLoaded = false;
+  // late BannerAd staticAd;
+  // bool staticAdLoaded = false;
 
-  late BannerAd inlineAd;
-  bool inlineAdLoaded = false;
+  // late BannerAd inlineAd;
+  // bool inlineAdLoaded = false;
 
-  static const AdRequest request = AdRequest();
+  // static const AdRequest request = AdRequest();
 
-  void loadStaticBannerAd() {
-    staticAd = BannerAd(
-      // adUnitId: 'ca-app-pub-3940256099942544~3347511713',
-      adUnitId: Keys.adKey,
-      size: AdSize.banner,
-      request: request,
-      listener: BannerAdListener(
-        onAdLoaded: (ad) {
-          setState(() {
-            staticAdLoaded = true;
-          });
-        },
-        onAdFailedToLoad: (ad, error) {
-          ad.dispose();
-          print('ad failed to load ${error.message}');
-        },
-      ),
-    );
-
-    staticAd.load();
-  }
-
-  void loadInlineBannerAd() {
-    inlineAd = BannerAd(
-      adUnitId: Keys.adKey,
-      size: AdSize.banner,
-      request: request,
-      listener: BannerAdListener(
-        onAdLoaded: (ad) {
-          setState(() {
-            inlineAdLoaded = true;
-          });
-        },
-        onAdFailedToLoad: (ad, error) {
-          ad.dispose();
-          print('ad failed to load ${error.message}');
-        },
-      ),
-    );
-
-    inlineAd.load();
-  }
+  // void loadInlineBannerAd() {
+  //   inlineAd = BannerAd(
+  //     adUnitId: Keys.adKey,
+  //     size: AdSize.banner,
+  //     request: request,
+  //     listener: BannerAdListener(
+  //       onAdLoaded: (ad) {
+  //         setState(() {
+  //           inlineAdLoaded = true;
+  //         });
+  //       },
+  //       onAdFailedToLoad: (ad, error) {
+  //         ad.dispose();
+  //         print('ad failed to load ${error.message}');
+  //       },
+  //     ),
+  //   );
+  //
+  //   inlineAd.load();
+  // }
 
   @override
   void initState() {
-    loadStaticBannerAd();
-    loadInlineBannerAd();
-    Future.microtask(() => context.read<MainViewModel>().fetchPost());
+    Future.microtask(() {
+      final viewModel = context.read<MainViewModel>();
+      viewModel.fetchPost();
+      viewModel.loadStaticBanner();
+      viewModel.loadInlineBanner();
+    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<MainViewModel>();
-
+    final staticAd = viewModel.staticBannerRepository.staticAd;
+    final inlineAd = viewModel.inlineBannerRepository.inlineAd;
     return Scaffold(
       appBar: AppBar(
         title: const Text("BADUKPARK"),
@@ -109,7 +90,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
             CustomTabBar(
                 tabBarLength: topTabBarTexts().tabTexts.length,
                 tabTexts: topTabBarTexts().tabTexts),
-            if (staticAdLoaded)
+            if (viewModel.isStaticBannerLoaded)
               Container(
                 margin: const EdgeInsets.only(top: 8.0),
                 child: AdWidget(ad: staticAd),
@@ -123,7 +104,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
               shrinkWrap: true,
               itemCount: viewModel.state.posts.length,
               itemBuilder: (context, index) {
-                if (inlineAdLoaded && index == 5) {
+                if (viewModel.isStaticBannerLoaded && index == 5) {
                   return Column(
                     children: [
                       SizedBox(
