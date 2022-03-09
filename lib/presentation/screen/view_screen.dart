@@ -1,3 +1,4 @@
+import 'package:baduk_park/presentation/screen/edit_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +35,24 @@ class _ViewScreenState extends State<ViewScreen> {
     final staticAd = viewModel.staticBannerRepository.staticAd;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("ViewScreen"),
+        title: Text(widget.post.boardName),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditScreen(
+                    post: widget.post,
+                  ),
+                ),
+              );
+            },
+            icon: const Icon(
+              Icons.edit_outlined,
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
