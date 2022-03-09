@@ -4,8 +4,13 @@ import '../../../domain/model/post.dart';
 
 class PostWidget extends StatefulWidget {
   final Post post;
+  final VoidCallback onClick;
 
-  const PostWidget({Key? key, required this.post}) : super(key: key);
+  const PostWidget({
+    Key? key,
+    required this.post,
+    required this.onClick,
+  }) : super(key: key);
 
   @override
   State<PostWidget> createState() => _PostWidgetState();
@@ -17,10 +22,7 @@ class _PostWidgetState extends State<PostWidget> {
     return Column(
       children: [
         ListTile(
-          contentPadding: const EdgeInsets.symmetric(
-            vertical: 0.0,
-            horizontal: 0.0,
-          ),
+          onTap: widget.onClick,
           title: Text.rich(
             TextSpan(
               style: const TextStyle(fontSize: 16),

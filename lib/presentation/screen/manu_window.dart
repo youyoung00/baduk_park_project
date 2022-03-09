@@ -1,4 +1,4 @@
-import 'package:baduk_park/presentation/view_model/main_view_model.dart';
+import 'package:baduk_park/presentation/view_model/board1_view_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
@@ -30,7 +30,7 @@ class _MenuWindowState extends State<MenuWindow> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<MainViewModel>();
+    final viewModel = context.watch<Board1ViewModel>();
 
     return FloatingActionButton(
       onPressed: () {
@@ -154,73 +154,3 @@ class _MenuWindowState extends State<MenuWindow> {
     );
   }
 }
-
-// Column(
-// children: [
-// CircleAvatar(
-// child: IconButton(
-// icon: const Icon(Icons.edit),
-// onPressed: () {
-// Navigator.push(
-// context,
-// MaterialPageRoute(
-// builder: (context) => const Edit(),
-// ),
-// );
-// },
-// ),
-// ),
-// const Text(
-// '글쓰기',
-// style: TextStyle(
-// color: Colors.deepPurple, fontSize: 10),
-// ),
-// ],
-// ),
-// Column(
-// children: [
-// CircleAvatar(
-// child: IconButton(
-// icon: const Icon(
-// Icons.person,
-// ),
-// onPressed: () {},
-// ),
-// ),
-// const Text(
-// '내 정보',
-// style: TextStyle(
-// color: Colors.deepPurple, fontSize: 10),
-// )
-// ],
-// ),
-// Column(
-// children: [
-// CircleAvatar(
-// child: IconButton(
-// onPressed: () {
-// if (!viewModel.isLogin) {
-// Navigator.push(
-// context,
-// MaterialPageRoute(
-// builder: (context) => AuthGate(),
-// ),
-// );
-// } else {
-// FirebaseAuth.instance.signOut();
-// Navigator.of(context, rootNavigator: true)
-//     .pop();
-// }
-// },
-// icon: Icon(
-// viewModel.isLogin ? Icons.logout : Icons.login,
-// ),
-// ),
-// ),
-// Text(
-// viewModel.isLogin ? '로그아웃' : '로그인',
-// style: const TextStyle(
-// color: Colors.deepPurple, fontSize: 10),
-// )
-// ],
-// ),

@@ -1,4 +1,4 @@
-import 'package:baduk_park/presentation/screen/main_screen.dart';
+import 'package:baduk_park/presentation/screen/board1_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -9,12 +9,12 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  MobileAds.instance.initialize();
-
-  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
 
   runApp(
     MultiProvider(
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: const MainScreen(),
+      home: const Board1Screen(),
     );
   }
 }

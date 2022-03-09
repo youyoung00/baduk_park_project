@@ -9,7 +9,8 @@ import '../../domain/repository/contents_api_repository.dart';
 import '../../domain/use_case/get_inline_banner_ad_use_case.dart';
 import '../../domain/use_case/get_posts_use_case.dart';
 import '../../domain/use_case/get_static_banner_ad_use_case.dart';
-import '../../presentation/view_model/main_view_model.dart';
+import '../../presentation/view_model/board1_view_model.dart';
+import '../../presentation/view_model/view_view_model.dart';
 
 // 1. Provider 전체
 List<SingleChildWidget> globalProviders = [
@@ -25,7 +26,7 @@ List<SingleChildWidget> independentModels = [
   ),
   Provider<AdRequest>(
     create: (context) => const AdRequest(),
-  )
+  ),
 ];
 
 // 3. 2번 객체에 의존성 있는 객체. 2에 등록한 클래스에 의존하는 Model.
@@ -52,11 +53,16 @@ List<SingleChildWidget> dependentModels = [
 // 4. ViewModels
 // View 가 사용. 2, 3에 등록한 클래스를 사용할 수 있음.
 List<SingleChildWidget> viewModels = [
-  ChangeNotifierProvider<MainViewModel>(
-    create: (context) => MainViewModel(
+  ChangeNotifierProvider<Board1ViewModel>(
+    create: (context) => Board1ViewModel(
       context.read<GetPostsUseCase>(),
       context.read<GetStaticBannerAdUseCase>(),
       context.read<GetInlineBannerAdUseCase>(),
+    ),
+  ),
+  ChangeNotifierProvider<ViewViewModel>(
+    create: (context) => ViewViewModel(
+      context.read<GetStaticBannerAdUseCase>(),
     ),
   ),
 ];

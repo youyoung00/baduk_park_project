@@ -9,7 +9,7 @@ import '../../domain/use_case/get_inline_banner_ad_use_case.dart';
 import '../../domain/use_case/get_posts_use_case.dart';
 import '../screen/main_state.dart';
 
-class MainViewModel with ChangeNotifier {
+class Board1ViewModel with ChangeNotifier {
   bool _isLogin = false;
   bool _isStaticBannerLoaded = false;
   bool _isInlineBannerLoaded = false;
@@ -28,7 +28,7 @@ class MainViewModel with ChangeNotifier {
   final GetStaticBannerAdUseCase staticBannerRepository;
   final GetInlineBannerAdUseCase inlineBannerRepository;
 
-  MainViewModel(
+  Board1ViewModel(
     this.getPostsRepository,
     this.staticBannerRepository,
     this.inlineBannerRepository,

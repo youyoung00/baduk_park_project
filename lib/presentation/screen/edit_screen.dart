@@ -1,13 +1,37 @@
+import 'package:baduk_park/domain/model/post.dart';
 import 'package:flutter/material.dart';
 
 class EditScreen extends StatefulWidget {
-  const EditScreen({Key? key}) : super(key: key);
+  final Post? post;
+
+  const EditScreen({Key? key, this.post}) : super(key: key);
 
   @override
   State<EditScreen> createState() => _EditScreenState();
 }
 
 class _EditScreenState extends State<EditScreen> {
+  final _titleTextEditingController = TextEditingController();
+  final _contentTextEditingController = TextEditingController();
+
+  @override
+  void initState() {
+    if (widget.post != null) {
+      _titleTextEditingController.text = widget.post!.title;
+      _contentTextEditingController.text = widget.post!.content;
+    } else {
+      return;
+    }
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _titleTextEditingController.dispose();
+    _contentTextEditingController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +42,7 @@ class _EditScreenState extends State<EditScreen> {
       ),
       body: SizedBox(
         width: double.infinity,
-        child: Column(
+        child: ListView(
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -35,8 +59,10 @@ class _EditScreenState extends State<EditScreen> {
                         },
                         style: ButtonStyle(
                           shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0))),
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
                         ),
                         child: const Text("게시판 선택"),
                       )),
@@ -62,22 +88,23 @@ class _EditScreenState extends State<EditScreen> {
                 ],
               ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(8.0),
               child: TextField(
-                obscureText: true,
+                controller: _titleTextEditingController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: '제목',
                 ),
               ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(8.0),
               child: TextField(
-                obscureText: true,
+                maxLines: 20,
+                controller: _contentTextEditingController,
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(100),
+                  contentPadding: EdgeInsets.all(24),
                   border: OutlineInputBorder(),
                   labelText: '내용을 입력해주세요.',
                 ),
