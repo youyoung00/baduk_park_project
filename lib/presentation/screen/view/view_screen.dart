@@ -1,12 +1,12 @@
-import 'package:baduk_park/presentation/screen/edit_screen.dart';
+import 'package:baduk_park/presentation/screen/edit/edit_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
-import '../../domain/model/post.dart';
-import '../components/widget_body/custom_tabbar.dart';
-import '../components/widget_data/top_tabbar_data.dart';
-import '../view_model/view_view_model.dart';
+import '../../../domain/model/post.dart';
+import '../../components/widget_body/custom_tabbar.dart';
+import '../../components/widget_data/top_tabbar_data.dart';
+import '../../view_model/view_view_model.dart';
 
 class ViewScreen extends StatefulWidget {
   final Post post;

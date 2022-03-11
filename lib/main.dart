@@ -1,4 +1,4 @@
-import 'package:baduk_park/presentation/screen/board1_screen.dart';
+import 'package:baduk_park/presentation/screen/board1/board1_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';

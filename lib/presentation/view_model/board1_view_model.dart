@@ -1,4 +1,5 @@
 import 'package:baduk_park/domain/use_case/get_static_banner_ad_use_case.dart';
+import 'package:baduk_park/presentation/screen/board1/board1_event.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/widgets.dart';
 import '../../data/data_source/api/result.dart';
 import '../../domain/model/post.dart';
 import '../../domain/use_case/get_inline_banner_ad_use_case.dart';
-import '../../domain/use_case/get_posts_use_case.dart';
+import '../../domain/use_case/use_cases.dart';
 import '../screen/main_state.dart';
 
 class Board1ViewModel with ChangeNotifier {
@@ -24,12 +25,12 @@ class Board1ViewModel with ChangeNotifier {
 
   MainState get state => _state;
 
-  final GetPostsUseCase getPostsRepository;
+  final UseCases useCases;
   final GetStaticBannerAdUseCase staticBannerRepository;
   final GetInlineBannerAdUseCase inlineBannerRepository;
 
   Board1ViewModel(
-    this.getPostsRepository,
+    this.useCases,
     this.staticBannerRepository,
     this.inlineBannerRepository,
   ) {
@@ -59,11 +60,33 @@ class Board1ViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  void onEvent(Board1Event event) {
+    event.when(
+      loadPosts: _loadPosts,
+    );
+    // _loadNotes();
+    notifyListeners();
+  }
+
+  Future<void> _loadPosts() async {
+    Result<List<Post>> posts = await useCases.getPosts();
+    posts.when(
+      success: (posts) {
+        _state = state.copyWith(posts: posts);
+        notifyListeners();
+      },
+      error: (message) {
+        Result.error(message);
+        notifyListeners();
+      },
+    );
+  }
+
   Future<void> fetchPost() async {
     _state = state.copyWith(isLoading: true);
     notifyListeners();
 
-    final Result<List<Post>> result = await getPostsRepository.call();
+    final Result<List<Post>> result = await useCases.getPosts.call();
 
     result.when(
       success: (posts) {

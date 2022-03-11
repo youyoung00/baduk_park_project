@@ -1,15 +1,15 @@
-import 'package:baduk_park/presentation/screen/view_screen.dart';
+import 'package:baduk_park/presentation/screen/view/view_screen.dart';
 import 'package:baduk_park/presentation/view_model/board1_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
-import '../components/widget_body/custom_tabbar.dart';
-import '../components/widget_body/post_widget.dart';
-import '../components/widget_data/post_tabbar_data.dart';
-import '../components/widget_data/top_tabbar_data.dart';
-import 'edit_screen.dart';
-import 'manu_window.dart';
+import '../../components/widget_body/custom_tabbar.dart';
+import '../../components/widget_body/post_widget.dart';
+import '../../components/widget_data/post_tabbar_data.dart';
+import '../../components/widget_data/top_tabbar_data.dart';
+import '../edit/edit_screen.dart';
+import '../manu_window.dart';
 
 class Board1Screen extends StatefulWidget {
   const Board1Screen({Key? key}) : super(key: key);
@@ -47,7 +47,9 @@ class _Board1ScreenState extends State<Board1Screen>
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const EditScreen()),
+                MaterialPageRoute(
+                  builder: (context) => EditScreen(),
+                ),
               );
             },
           ),

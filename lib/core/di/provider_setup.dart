@@ -1,3 +1,8 @@
+import 'package:baduk_park/domain/use_case/add_post_use_case.dart';
+import 'package:baduk_park/domain/use_case/delete_post_use_case.dart';
+import 'package:baduk_park/domain/use_case/get_post_use_case.dart';
+import 'package:baduk_park/domain/use_case/update_post_use_case.dart';
+import 'package:baduk_park/domain/use_case/use_cases.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -37,8 +42,14 @@ List<SingleChildWidget> dependentModels = [
   ProxyProvider<PostApi, ContentsApiRepository>(
     update: (context, postApi, _) => BoardApiRepositoryImpl(postApi),
   ),
-  ProxyProvider<ContentsApiRepository, GetPostsUseCase>(
-    update: (context, repository, _) => GetPostsUseCase(repository),
+  ProxyProvider<ContentsApiRepository, UseCases>(
+    update: (context, repository, _) => UseCases(
+      updatePost: UpdatePostUseCase(repository),
+      getPost: GetPostUseCase(repository),
+      getPosts: GetPostsUseCase(repository),
+      deletePost: DeletePostUseCase(repository),
+      addPost: AddPostUseCase(repository),
+    ),
   ),
   ProxyProvider<AdRequest, GetStaticBannerAdUseCase>(
     update: (context, staticBannerRepository, _) =>
@@ -55,7 +66,7 @@ List<SingleChildWidget> dependentModels = [
 List<SingleChildWidget> viewModels = [
   ChangeNotifierProvider<Board1ViewModel>(
     create: (context) => Board1ViewModel(
-      context.read<GetPostsUseCase>(),
+      context.read<UseCases>(),
       context.read<GetStaticBannerAdUseCase>(),
       context.read<GetInlineBannerAdUseCase>(),
     ),

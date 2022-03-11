@@ -5,8 +5,8 @@ import 'package:flutterfire_ui/auth.dart';
 import 'package:provider/provider.dart';
 
 import '../components/widget_body/border_button.dart';
-import 'auth_gate_screen.dart';
-import 'edit_screen.dart';
+import 'auth_gate/auth_gate_screen.dart';
+import 'edit/edit_screen.dart';
 
 class MenuWindow extends StatefulWidget {
   const MenuWindow({Key? key}) : super(key: key);
