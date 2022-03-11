@@ -26,4 +26,29 @@ class BoardApiRepositoryImpl implements ContentsApiRepository {
       },
     );
   }
+
+  @override
+  Future<void> updatePost(Post post) async {
+    await updatePost(post);
+  }
+
+  @override
+  Future<void> deletePost(Post post) async {
+    await deletePost(post);
+  }
+
+  @override
+  Future<Post?> getPostById(int id) async {
+    return await getPostById(id);
+  }
+
+  @override
+  Future<List<Post>> getPosts() async {
+    return await getPosts();
+  }
+
+  @override
+  Future<void> insertPost(Post post) async {
+    await insertPost(post);
+  }
 }

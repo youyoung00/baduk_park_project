@@ -89,21 +89,21 @@ class _EditScreenState extends State<EditScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: TextField(
                 controller: _titleTextEditingController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: '제목',
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: TextField(
                 maxLines: 20,
                 controller: _contentTextEditingController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   contentPadding: EdgeInsets.all(24),
                   border: OutlineInputBorder(),
                   labelText: '내용을 입력해주세요.',
@@ -116,7 +116,10 @@ class _EditScreenState extends State<EditScreen> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       textStyle: const TextStyle(fontSize: 20)),
-                  onPressed: () {},
+                  onPressed: () {
+                    // widget.post.title = _titleTextEditingController.text;
+                    // Navigator.pop(context, );
+                  },
                   child: const Text('등록'),
                 ),
                 ElevatedButton(

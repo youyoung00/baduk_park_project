@@ -4,6 +4,7 @@ import 'package:baduk_park/data/data_source/api/result.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../core/security area/api_url/url.dart';
+import '../../../domain/model/post.dart';
 
 class PostApi {
   final http.Client client;
@@ -21,5 +22,12 @@ class PostApi {
     } catch (e) {
       return const Result.error('네트워크 에러');
     }
+  }
+
+  Future<void> updatePost(Post post) async {
+    await client.post(
+      Uri.parse(Url.ciServer),
+      body: post.toJson(),
+    );
   }
 }

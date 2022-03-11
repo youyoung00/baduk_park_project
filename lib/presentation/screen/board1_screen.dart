@@ -8,6 +8,7 @@ import '../components/widget_body/custom_tabbar.dart';
 import '../components/widget_body/post_widget.dart';
 import '../components/widget_data/post_tabbar_data.dart';
 import '../components/widget_data/top_tabbar_data.dart';
+import 'edit_screen.dart';
 import 'manu_window.dart';
 
 class Board1Screen extends StatefulWidget {
@@ -43,7 +44,12 @@ class _Board1ScreenState extends State<Board1Screen>
             icon: const Icon(
               Icons.edit_outlined,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const EditScreen()),
+              );
+            },
           ),
           IconButton(
             icon: const Icon(

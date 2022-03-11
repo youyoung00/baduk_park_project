@@ -59,7 +59,7 @@ class _MenuWindowState extends State<MenuWindow> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const EditScreen(),
+                                    builder: (context) => EditScreen(),
                                   ),
                                 );
                               },

@@ -11,10 +11,16 @@ class GetPostsUseCase {
   Future<Result<List<Post>>> call() async {
     final result = await repository.fetch();
 
-    return result.when(success: (posts) {
-      return Result.success(posts);
-    }, error: (message) {
-      return Result.error(message);
-    });
+    return result.when(
+      success: (posts) {
+        posts.sort(
+          (a, b) => -a.createdAt.compareTo(b.createdAt),
+        );
+        return Result.success(posts);
+      },
+      error: (message) {
+        return Result.error(message);
+      },
+    );
   }
 }

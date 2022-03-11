@@ -20,12 +20,14 @@ class ViewScreen extends StatefulWidget {
 class _ViewScreenState extends State<ViewScreen> {
   @override
   void initState() {
-    Future.microtask(() {
-      final viewModel = context.read<ViewViewModel>();
-      // viewModel.fetchPost();
-      viewModel.loadStaticBanner();
-      // viewModel.loadInlineBanner();
-    });
+    Future.microtask(
+      () {
+        final viewModel = context.read<ViewViewModel>();
+        // viewModel.fetchPost();
+        viewModel.loadStaticBanner();
+        // viewModel.loadInlineBanner();
+      },
+    );
     super.initState();
   }
 
@@ -71,104 +73,69 @@ class _ViewScreenState extends State<ViewScreen> {
                   alignment: Alignment.bottomCenter,
                 ),
               const Divider(),
-              SizedBox(
-                // color: Colors.red,
-                width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Flexible(
-                        child: RichText(
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                          strutStyle: StrutStyle(fontSize: 16.0),
-                          text: TextSpan(
-                            text: widget.post.title,
-                            style: const TextStyle(
-                                color: Colors.black,
-                                height: 1.4,
-                                fontSize: 18.0,
-                                fontFamily: 'NanumSquareRegular'),
-                          ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: RichText(
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      strutStyle: const StrutStyle(fontSize: 16.0),
+                      text: TextSpan(
+                        text: widget.post.title,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          height: 1.4,
+                          fontSize: 18.0,
+                          fontFamily: 'NanumSquareRegular',
                         ),
                       ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    widget.post.emailName,
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    widget.post.createdAt.toString(),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Text(
+                      widget.post.emailName,
+                    ),
+                  ),
+                  RichText(
+                    textAlign: TextAlign.start,
+                    text: TextSpan(
+                      // text: widget.post.emailName,
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: '조회 ${widget.post.viewCount} | ',
+                          style: Theme.of(context).textTheme.subtitle2,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 8.0,
-                            right: 8.0,
-                            bottom: 8.0,
-                          ),
-                          child: RichText(
-                            textAlign: TextAlign.start,
-                            text: TextSpan(
-                              // text: widget.post.emailName,
-                              children: <TextSpan>[
-                                TextSpan(
-                                  text: '조회 ${widget.post.viewCount} | ',
-                                  style: Theme.of(context).textTheme.subtitle2,
-                                ),
-                                TextSpan(
-                                  text: '댓글 ${widget.post.commentCount}',
-                                  style: Theme.of(context).textTheme.subtitle2,
-                                ),
-                              ],
-                            ),
-                          ),
+                        TextSpan(
+                          text: '댓글 ${widget.post.commentCount} | ',
+                          style: Theme.of(context).textTheme.subtitle2,
                         ),
-                        const Divider(),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Flexible(
-                            child: RichText(
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 100,
-                              strutStyle: StrutStyle(fontSize: 16.0),
-                              text: TextSpan(
-                                text: widget.post.content,
-                                style: const TextStyle(
-                                    color: Colors.black,
-                                    height: 1.4,
-                                    fontSize: 18.0,
-                                    fontFamily: 'NanumSquareRegular'),
-                              ),
-                            ),
-                          ),
+                        TextSpan(
+                          text: '작성 ${widget.post.createdAt}',
+                          style: Theme.of(context).textTheme.subtitle2,
                         ),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                  const Divider(),
+                  RichText(
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 100,
+                    strutStyle: const StrutStyle(fontSize: 16.0),
+                    text: TextSpan(
+                      text: widget.post.content,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        height: 1.4,
+                        fontSize: 18.0,
+                        fontFamily: 'NanumSquareRegular',
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              // Text()
             ],
           ),
         ),
