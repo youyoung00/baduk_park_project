@@ -1,10 +1,12 @@
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:baduk_park/domain/repository/contents_api_repository.dart';
 import 'package:baduk_park/presentation/screen/edit/edit_post_ui_event.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/model/post.dart';
+import '../screen/edit/edit_post_event.dart';
 
 class EditViewModel with ChangeNotifier {
   final ContentsApiRepository repository;
@@ -13,11 +15,11 @@ class EditViewModel with ChangeNotifier {
 
   final _eventController = StreamController<EditPostUiEvent>.broadcast();
 
-  Stream<EditPostUiEvent> get eventController => _eventController.stream;
+  Stream<EditPostUiEvent> get eventStream => _eventController.stream;
 
-  EditViewModel(this.repository){
+  EditViewModel(this.repository) {
     FirebaseAuth.instance.authStateChanges().listen(
-          (User? user) {
+      (User? user) {
         if (user == null) {
           _isLogin = false;
         } else {
@@ -28,16 +30,23 @@ class EditViewModel with ChangeNotifier {
     );
   }
 
-  void onEvent(EditPostUiEvent event) {
+  void onEvent(EditPostEvent event) {
     event.when(
       savePost: _savePost,
-      showSnackBar: _showSnackBar,
     );
   }
 
-  Future<void> _savePost(int? id,
-      String title,
-      String content,) async {
+  Future<void> _savePost(
+    int? id,
+    String boardName,
+    String title,
+    String content,
+    DateTime createdAt,
+    int memberId,
+    int viewCount,
+    String emailName,
+    int commentCount,
+  ) async {
     if (title.isEmpty || content.isEmpty) {
       _eventController.add(
         const EditPostUiEvent.showSnackBar('제목이나 내용이 비어있습니다.'),
@@ -47,27 +56,33 @@ class EditViewModel with ChangeNotifier {
     if (id == null) {
       await repository.insertPost(
         Post(
-          id: id,
           createdAt: DateTime.now(),
-          boardName: '',
+          boardName: boardName,
           title: title,
-          memberId: null,
-          viewCount: 0,
-          content: '',
-          emailName
-          :,
-          commentCount: null,
+          memberId: memberId,
+          viewCount: viewCount,
+          content: content,
+          emailName: emailName,
+          commentCount: commentCount,
         ),
       );
     } else {
-      await repository.updateNote(Note(
+      await repository.updatePost(
+        Post(
+          createdAt: DateTime.now(),
+          boardName: boardName,
           id: id,
-          color: _color,
-          title: title,
+          emailName: emailName,
           content: content,
-          timestamp: DateTime
-              .now()
-              .millisecondsSinceEpoch));
+          viewCount: viewCount,
+          commentCount: commentCount,
+          title: title,
+          memberId: memberId,
+        ),
+      );
     }
+    _eventController.add(
+      const EditPostUiEvent.savePost(),
+    );
   }
 }

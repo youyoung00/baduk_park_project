@@ -15,6 +15,7 @@ import '../../domain/use_case/get_inline_banner_ad_use_case.dart';
 import '../../domain/use_case/get_posts_use_case.dart';
 import '../../domain/use_case/get_static_banner_ad_use_case.dart';
 import '../../presentation/view_model/board1_view_model.dart';
+import '../../presentation/view_model/edit_view_model.dart';
 import '../../presentation/view_model/view_view_model.dart';
 
 // 1. Provider 전체
@@ -74,6 +75,11 @@ List<SingleChildWidget> viewModels = [
   ChangeNotifierProvider<ViewViewModel>(
     create: (context) => ViewViewModel(
       context.read<GetStaticBannerAdUseCase>(),
+    ),
+  ),
+  ChangeNotifierProvider<EditViewModel>(
+    create: (context) => EditViewModel(
+      context.read<ContentsApiRepository>(),
     ),
   ),
 ];

@@ -23,7 +23,7 @@ class _$PostTearOff {
   const _$PostTearOff();
 
   _Post call(
-      {@JsonKey(name: '_id') required int id,
+      {@JsonKey(name: '_id') int? id,
       @JsonKey(name: 'title') required String title,
       @JsonKey(name: 'content') required String content,
       @JsonKey(name: 'board_name') required String boardName,
@@ -56,7 +56,7 @@ const $Post = _$PostTearOff();
 /// @nodoc
 mixin _$Post {
   @JsonKey(name: '_id')
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'content')
@@ -84,7 +84,7 @@ abstract class $PostCopyWith<$Res> {
   factory $PostCopyWith(Post value, $Res Function(Post) then) =
       _$PostCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: '_id') int id,
+      {@JsonKey(name: '_id') int? id,
       @JsonKey(name: 'title') String title,
       @JsonKey(name: 'content') String content,
       @JsonKey(name: 'board_name') String boardName,
@@ -119,7 +119,7 @@ class _$PostCopyWithImpl<$Res> implements $PostCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -162,7 +162,7 @@ abstract class _$PostCopyWith<$Res> implements $PostCopyWith<$Res> {
       __$PostCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: '_id') int id,
+      {@JsonKey(name: '_id') int? id,
       @JsonKey(name: 'title') String title,
       @JsonKey(name: 'content') String content,
       @JsonKey(name: 'board_name') String boardName,
@@ -198,7 +198,7 @@ class __$PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -239,7 +239,7 @@ class __$PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Post implements _Post {
   _$_Post(
-      {@JsonKey(name: '_id') required this.id,
+      {@JsonKey(name: '_id') this.id,
       @JsonKey(name: 'title') required this.title,
       @JsonKey(name: 'content') required this.content,
       @JsonKey(name: 'board_name') required this.boardName,
@@ -253,7 +253,7 @@ class _$_Post implements _Post {
 
   @override
   @JsonKey(name: '_id')
-  final int id;
+  final int? id;
   @override
   @JsonKey(name: 'title')
   final String title;
@@ -327,7 +327,7 @@ class _$_Post implements _Post {
 
 abstract class _Post implements Post {
   factory _Post(
-      {@JsonKey(name: '_id') required int id,
+      {@JsonKey(name: '_id') int? id,
       @JsonKey(name: 'title') required String title,
       @JsonKey(name: 'content') required String content,
       @JsonKey(name: 'board_name') required String boardName,
@@ -341,7 +341,7 @@ abstract class _Post implements Post {
 
   @override
   @JsonKey(name: '_id')
-  int get id;
+  int? get id;
   @override
   @JsonKey(name: 'title')
   String get title;
